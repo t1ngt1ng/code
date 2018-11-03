@@ -33,7 +33,6 @@ Arrow.prototype.draw = function (context) {
     context.closePath();
     context.fill();
     this.lineWidth > 0 ? context.stroke() : null;
-    // context.stroke();
     context.restore();
 
 }

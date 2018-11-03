@@ -34,8 +34,5 @@ Ball.prototype.draw = function (context) {
     context.closePath();
     context.fill();
     this.lineWidth > 0 ? context.stroke() : null;
-    // if (this.lineWidth > 0) {
-    //     context.stroke();
-    // }
     context.restore()
 }
