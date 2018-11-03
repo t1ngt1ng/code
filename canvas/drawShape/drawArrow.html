@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../utils/shape/Arrow.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<h2>utils／shape文件夹下Ball.js绘制的使用</h2>
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            arrow = new Arrow();
+
+        arrow.x = canvas.width / 2;
+        arrow.y = canvas.height / 2;
+        arrow.lineWidth = 2;
+        arrow.rotation = -Math.PI * 0.5;//变换尖头方向，请传入弧度只
+        arrow.width = 200;
+        arrow.color = "#199008";
+        arrow.draw(context);
+    }
+
+</script>
+</body>
+</html>
