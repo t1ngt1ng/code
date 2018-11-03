@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>心跳</title>
+    <script src="../utils/shape/Ball.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h2>心跳</h2>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            ball = new Ball(50,'#ff0000'),
+            range = 0.2,//运动幅度,心跳大小
+            speed = 0.1,//运动速度
+            contentScale = 1,//初始缩放为1
+            angle = 0;//弧度
+
+        //将图形放置在画布中间
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+
+        (function drawFrame() {
+            //使用浏览器的帧动画，不要用setTimeout，setInterval
+            window.requestAnimationFrame(drawFrame, canvas);
+            context.clearRect(0, 0, canvas.width, canvas.height);//清空画布
+            //两个轴坐标缩放相同尺寸
+            ball.scaleX = ball.scaleY = contentScale + Math.sin(angle) * range;
+            angle += speed;
+            ball.draw(context)
+        })()
+    }
+</script>
+
+</body>
+</html>

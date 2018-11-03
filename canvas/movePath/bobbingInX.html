@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>从左至右上下运动</title>
+    <script src="../utils/shape/Ball.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h2>圆球从左至右，上下运动</h2>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            ball = new Ball(),
+            range = 50,//运动幅度,与中轴的偏移
+            speedX = 1,//运动速度
+            speedY = 0.1,//运动速度
+            angle = 0;//弧度
+
+
+        (function drawFrame() {
+            //使用浏览器的帧动画，不要用setTimeout，setInterval
+            window.requestAnimationFrame(drawFrame, canvas);
+            context.clearRect(0, 0, canvas.width, canvas.height);//清空画布
+            ball.x += speedX;//水平方向匀速
+            ball.y = canvas.width / 2 + Math.sin(angle) * range;//垂直方向上下
+            angle += speedY;
+            ball.draw(context)
+        })()
+    }
+</script>
+
+</body>
+</html>
