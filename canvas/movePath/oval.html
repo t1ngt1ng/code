@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>椭圆运动</title>
+    <script src="../utils/shape/Ball.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h2>椭圆运动</h2>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+    /**
+     * 椭圆运动很简单，只要将圆周运动的x,y半径设置成不一样的就可以了
+     * */
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            ball = new Ball(),
+            speed = 0.02,//运动速度
+            angle = 0,//弧度
+            centerX = canvas.width / 2,//圆心x轴
+            centerY = canvas.height / 2,//圆心y轴
+            raduisX = 150,
+            raduisY = 100;
+
+        (function drawFrame() {
+            //使用浏览器的帧动画，不要用setTimeout，setInterval
+            window.requestAnimationFrame(drawFrame, canvas);
+            context.clearRect(0, 0, canvas.width, canvas.height);//清空画布
+
+            ball.x = centerX + Math.cos(angle) * raduisX;
+            ball.y = centerY + Math.sin(angle) * raduisY;
+
+            angle += speed;
+            ball.draw(context);
+        })()
+    }
+</script>
+
+</body>
+</html>

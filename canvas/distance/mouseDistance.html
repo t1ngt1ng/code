@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>距离</title>
+    <script src="../utils/shape/Ball.js"></script>
+    <script src="../utils/utils.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h2>计算鼠标位置和中心点的距离</h2>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<p>distance:<span id="result"></span></p>
+
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            mouse = utils.captureMouse(canvas),
+            res = document.getElementById('result'),
+            ball = new Ball(),
+            dist = null;//弧度
+
+        //将图形放置在画布中间
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        ball.radius = 2;
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame, canvas)
+            context.clearRect(0, 0, canvas.width, canvas.height);//清空画布
+
+            context.beginPath();
+            context.moveTo(ball.x, ball.y)
+            context.lineTo(mouse.x, mouse.y)
+            context.closePath();
+            context.stroke();
+
+            let dx = ball.x - mouse.x;
+            let dy = ball.y - mouse.y;
+            dist = Math.sqrt(dx * dx + dy * dy);//计算两点间距离
+            res.innerHTML = dist;
+
+        })()
+
+
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画出正弦波</title>
+    <script src="../utils/shape/Ball.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h2>画出正弦波</h2>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            range = 50,//运动幅度,与中轴的偏移
+            speedX = 1,//运动速度
+            speedY = 0.1,//运动速度
+            angle = 0,//弧度
+            xpos = 0,//正弦波x轴位置
+            ypos = canvas.height / 2;//正弦波y轴位置
+
+        (function drawFrame() {
+            //使用浏览器的帧动画，不要用setTimeout，setInterval
+            window.requestAnimationFrame(drawFrame, canvas);
+            //此处不清空画布，保留上一步痕迹
+            context.beginPath();
+            context.moveTo(xpos, ypos);
+            xpos += speedX;//水平方向匀速
+            ypos = canvas.height / 2 + Math.sin(angle) * range;//垂直方向上下
+            context.lineTo(xpos, ypos);
+            angle += speedY;
+            context.stroke();
+        })()
+    }
+</script>
+
+</body>
+</html>

@@ -14,9 +14,10 @@ function Ball(radius = 40, color = "#000000") {
     this.rotation = 0;//旋转
     this.scaleX = 1;//默认x缩放为1
     this.scaleY = 1;//默认y缩放为1
-    this.color = color;//填充颜色
+    this.color = color;//颜色
     this.lineWidth = 1;//默认线宽
     this.lineColor = color;//边线颜色
+
 }
 
 /**

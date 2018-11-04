@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>距离</title>
+    <script src="../utils/shape/Ball.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h2>计算两个随机生成点的距离</h2>
+distance:
+<div id="result"></div>
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            res = document.getElementById('result'),
+            ball = new Ball(),
+            range = 50,//运动幅度,与中轴的偏移
+            speed = 0.1,//运动速度
+            angle = 0,
+            dist = null;//弧度
+
+        //将图形放置在画布中间
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+
+        (function drawFrame() {
+
+            context.clearRect(0, 0, canvas.width, canvas.height);//清空画布
+            let rect1 = drawPoint(canvas.width, canvas.height, context);//生成一个默认点
+            let rect2 = drawPoint(canvas.width, canvas.height, context, 2, '#ff0000');//生成一个大小4，红色的点
+
+            /**
+             //可以给两点之间连上线
+             context.beginPath();
+             context.moveTo(rect1.x, rect1.y)
+             context.lineTo(rect2.x, rect2.y)
+             context.stroke();
+             */
+
+            let dx = rect1.x - rect2.x;
+            let dy = rect1.y - rect2.y;
+            dist = Math.sqrt(dx * dx + dy * dy);//计算两点间距离
+            res.innerHTML = dist;
+
+        })()
+
+
+    }
+
+    /**
+     * 绘制点
+     * params：maxWidth x轴最大距离
+     *         maxHeight y轴最大距离
+     *         context  canvas.getContext
+     *         pointSize    点总大小
+     *         color    填充颜色
+     * */
+    function drawPoint(maxWidth, maxHeight, context, raduis = 2, color = '#000000') {
+        console.log(raduis, color)
+        let ball = new Ball(raduis, color);
+
+        console.log(maxWidth, maxHeight)
+        let rect = {
+            x: maxWidth * Math.random(),
+            y: maxHeight * Math.random()
+        };
+
+        ball.x = rect.x;
+        ball.y = rect.y;
+        ball.lineColor = color;
+        ball.draw(context);
+        return rect;
+    }
+
+</script>
+
+</body>
+</html>
