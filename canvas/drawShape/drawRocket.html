@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘火箭</title>
+    <script src="../utils/shape/Rocket.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<h2>utils／shape文件夹下Rocket.js绘制的使用</h2>
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            rocket = new Rocket();
+
+        rocket.x = canvas.width / 2;
+        rocket.y = canvas.height / 2;
+        rocket.width = 40;
+//        rocket.showFlame = true;//显示火焰
+        rocket.color = "#199008";
+        rocket.draw(context);
+    }
+</script>
+</body>
+</html>
