@@ -27,7 +27,27 @@ var utils = {
             mouse.y = y;
         }, false);
         return mouse;
+    },
+    parseColor(color, toNumber) {
+        if (toNumber === true) {
+            if (typeof color === 'number') {
+                return (color | 0)//去掉小数
+            }
+
+            if (typeof color === 'string' && color[0] === '#') {
+                console.log(222, color);
+                return color = color.slice(1);
+
+            }
+        } else {
+            if (typeof color === 'number') {
+                color = '#' + ('00000' + (color | 0).toString(16)).substr(-6);
+            }
+            return color;
+        }
+
     }
+
 };
 
 

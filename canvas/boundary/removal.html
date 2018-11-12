@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../utils/shape/Ball.js"></script>
+
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<textarea name="" id="log" cols="30" rows="10"></textarea>
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            log = document.getElementById('log'),
+            balls = [],
+            numBalls = 10;
+
+        for (let ball, i = 0; i < numBalls; i++) {
+            ball = new Ball(20);
+            ball.id = 'ball' + i;
+            ball.x = Math.random() * canvas.width;
+            ball.y = Math.random() * canvas.height;
+            ball.vx = Math.random() * 2 - 1;
+            ball.vy = Math.random() * 2 - 1;
+            balls.push(ball);
+        }
+
+        function draw(ball, pos) {
+            ball.x += ball.vx;
+            ball.y += ball.vy;
+            //检测球是否越界
+            if (ball.x - ball.radius > canvas.width ||
+                ball.x + ball.radius < 0 ||
+                ball.y - ball.radius > canvas.height ||
+                ball.y + ball.radius < 0) {
+                balls.splice(pos, 1);//如果越界从数组中删除
+                if (balls.length > 0) {
+                    log.value = "Remove" + ball.id;
+                } else {
+                    log.value = 'All gone';
+                }
+            }
+            ball.draw(context);
+        }
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame, canvas);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            let i = balls.length;
+            while (i--) {
+                draw(balls[i], i)
+            }
+        })()
+
+    }
+</script>
+
+
+</body>
+</html>

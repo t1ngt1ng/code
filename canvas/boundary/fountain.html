@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../utils/utils.js"></script>
+    <script src="../utils/shape/Ball.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="400" height="400"></canvas>
+<script>
+    window.onload = function () {
+            let canvas = document.getElementById('canvas'),
+                context = canvas.getContext('2d'),
+                log = document.getElementById('log'),
+                balls = [],
+                numBalls = 100,
+                gravity = 0.5,//y轴重力
+                wind = 0.1;//x轴风的力
+
+            for (let ball, i = 0; i < numBalls; i++) {
+                ball = new Ball(2, Math.random() * 0xffffff);
+                ball.x = canvas.width / 2;
+                ball.y = canvas.height;
+                ball.vx = Math.random() * 2 - 1;
+                ball.vy = Math.random() * -10 - 10;
+                balls.push(ball);
+            }
+
+            function draw(ball, pos) {
+                ball.vy += gravity;
+                ball.vx+=wind;
+                ball.x += ball.vx;
+                ball.y += ball.vy;
+                //检测球是否越界
+                if (ball.x - ball.radius > canvas.width ||
+                    ball.x + ball.radius < 0 ||
+                    ball.y - ball.radius > canvas.height ||
+                    ball.y + ball.radius < 0) {
+                    //如果越界放置回初始位置
+                    ball.x = canvas.width / 2;
+                    ball.y = canvas.height;
+                    ball.vx = Math.random() * 2 - 1;
+                    ball.vy = Math.random() * -10 - 10;
+                }
+                ball.draw(context);
+            }
+
+            (function drawFrame() {
+                window.requestAnimationFrame(drawFrame, canvas);
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                balls.forEach(draw);
+
+            })()
+
+        }
+</script>
+</body>
+</html>

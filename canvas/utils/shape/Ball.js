@@ -8,15 +8,18 @@
  */
 
 function Ball(radius = 40, color = "#000000") {
+    console.log(color)
     this.x = 0;//x轴位置
     this.y = 0;//y轴位置
+    this.vx=0;//x轴速度向量
+    this.vy=0;//y轴速度向量
     this.radius = radius;//半径
     this.rotation = 0;//旋转
     this.scaleX = 1;//默认x缩放为1
     this.scaleY = 1;//默认y缩放为1
-    this.color = color;//颜色
+    this.color = utils.parseColor(color);//颜色
     this.lineWidth = 1;//默认线宽
-    this.lineColor = color;//边线颜色
+    this.lineColor = utils.parseColor(color);//边线颜色
 
 }
 
