@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="../utils/utils.js"></script>-->
+    <script src="../utils/shape/Rocket.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"></canvas>
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            rocket = new Rocket(),
+            vr = 0,
+            vx = 0,
+            vy = 0,
+            thrust = 0;
+
+        rocket.color = "#ffffff";
+        rocket.x = canvas.width / 2;
+        rocket.y = canvas.height / 2;
+
+        window.addEventListener('keydown', function (event) {
+            switch (event.keyCode) {
+                case 37:
+                    vr = -3;
+                    break;
+                case 38:
+                    thrust = 0.05;
+                    rocket.showFlame = true;
+                    break;
+                case 39:
+                    vr = 3;
+                    break;
+            }
+        }, false);
+
+        window.addEventListener('keyup', function () {
+            vr = 0;
+            thrust = 0;
+            rocket.showFlame = false;
+        }, false);
+
+        (function drawFrame() {
+            window.requestAnimationFrame(drawFrame, canvas);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            rocket.rotation += vr * Math.PI / 180;
+            var angle = rocket.rotation,
+                ax = Math.cos(angle) * thrust,
+                ay = Math.sin(angle) * thrust,
+                left = 0,
+                right = canvas.width,
+                top = 0,
+                bottom = canvas.height;
+
+            vx += ax;
+            vy += ay;
+            rocket.x += vx;
+            rocket.y += vy;
+
+            if (rocket.x - rocket.width / 2 > right) {
+                rocket.x = left - rocket.width / 2;
+            } else if (rocket.x + rocket.width / 2 < left) {
+                rocket.x = right + rocket.width / 2;
+            }
+
+            if (rocket.y - rocket.height / 2 > bottom) {
+                rocket.y = top - rocket.height / 2
+            } else if (rocket.y < top - rocket.height / 2) {
+                rocket.y = bottom + rocket.height / 2;
+            }
+            rocket.draw(context)
+        })()
+    }
+
+
+</script>
+</body>
+</html>
