@@ -22,7 +22,8 @@
             vr = 0,
             vx = 0,
             vy = 0,
-            thrust = 0;
+            thrust = 0,
+            friction = 0.95;//添加摩擦力
 
         rocket.color = "#ffffff";
         rocket.x = canvas.width / 2;
@@ -64,6 +65,10 @@
 
             vx += ax;
             vy += ay;
+
+            vx *= friction;
+            vy *= friction;
+
             rocket.x += vx;
             rocket.y += vy;
 
