@@ -28,24 +28,30 @@ var utils = {
         }, false);
         return mouse;
     },
-    parseColor(color, toNumber) {
-        if (toNumber === true) {
-            if (typeof color === 'number') {
-                return (color | 0)//去掉小数
-            }
+    captureMouse2: function (canvas) {
+        let mouse = {x: 0, y: 0},
+            bbox = canvas.getBoundingClientRect(),
+            body_scrollLeft = document.body.scrollLeft,
+            body_scrollTop = document.body.scrollTop,
+            element_scrollLeft = document.documentElement.scrollLeft,
+            element_scrollTop = document.documentElement.scrollTop;
 
-            if (typeof color === 'string' && color[0] === '#') {
-                console.log(222, color);
-                return color = color.slice(1);
+        canvas.addEventListener('mousemove', function (event) {
+            let x, y;
+            if (event.pageX || event.pageY) {
+                x = event.pageX;
+                y = event.pageY;
 
+            } else {
+                x = event.clientX + (body_scrollLeft || element_scrollLeft);
+                y = event.clientY + (body_scrollTop || element_scrollTop);
             }
-        } else {
-            if (typeof color === 'number') {
-                color = '#' + ('00000' + (color | 0).toString(16)).substr(-6);
-            }
-            return color;
-        }
+            mouse.x = x - (bbox.left * (canvas.width / bbox.width))
+            mouse.y = y - (bbox.top * (canvas.height / bbox.height))
 
+        }, false);
+        console.log(mouse)
+        return mouse;
     }
 
 };
