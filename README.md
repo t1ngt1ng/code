@@ -3,6 +3,7 @@
 
 ## 目录
 code  
+canvas  
 &emsp; - utils(工具类)   
 &emsp;&emsp;-- utils.js(基础工具类)  
 &emsp;&emsp;-- shape(图形)  
@@ -25,4 +26,7 @@ code
 
 &emsp;- distance(距离)    
 &emsp;&emsp;-- randomPoint.html(获取两个任意点间的距离)    
-&emsp;&emsp;-- mouseDistance.html(获取点与鼠标之间的距离)   
+&emsp;&emsp;-- mouseDistance.html(获取点与鼠标之间的距离)    
+
+css
+&emsp;- fontEffect.html (毛玻璃和金属文字效果)
