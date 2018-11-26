@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制星星</title>
+    <script src="../utils/shape/Star.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<h2>utils／shape文件夹下Star.js绘制的使用</h2>
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            star = new Star();
+
+        star.x = canvas.width / 2;
+        star.y = canvas.height / 2;
+
+        star.draw(context);
+    }
+</script>
+</body>
+</html>

@@ -10,11 +10,13 @@ canvas
 &emsp;&emsp;&emsp;&emsp;---- Arrow.js(箭头)  
 &emsp;&emsp;&emsp;&emsp;---- Ball.js(球)   
 &emsp;&emsp;&emsp;&emsp;---- Rocket.js(火箭)   
+&emsp;&emsp;&emsp;&emsp;---- Star.js(星星)   
 
 &emsp;- drawShape(绘制图形)  
 &emsp;&emsp;-- drawArrow.html(绘制箭头)  
 &emsp;&emsp;-- drawBall.html(绘制球)   
 &emsp;&emsp;-- drawRocket.html(绘制火箭)   
+&emsp;&emsp;-- drawStar.html(绘制星星)   
 
 &emsp;- move(移动路径)    
 &emsp;&emsp;-- bobbing.html(上下来回运动)    
