@@ -17,6 +17,7 @@ canvas
 &emsp;&emsp;-- drawBall.html(绘制球)   
 &emsp;&emsp;-- drawRocket.html(绘制火箭)   
 &emsp;&emsp;-- drawStar.html(绘制星星)   
+&emsp;&emsp;-- starrySky.html(绘制星空)   
 
 &emsp;- move(移动路径)    
 &emsp;&emsp;-- bobbing.html(上下来回运动)    

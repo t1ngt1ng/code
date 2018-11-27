@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制星星</title>
+    <script src="../utils/shape/Star.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<h2>utils／shape文件夹下Star.js绘制的使用</h2>
+<canvas id="canvas" width="800" height="800"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            star = new Star();
+
+        context.fillStyle = 'rgb(16,47,75)';
+        context.fillRect(0, 0, canvas.width, canvas.height)
+        star.color = 'rgb(245,237,227)';
+        star.lineColor = 'rgba(206,204,251,0.5)';
+        star.lineWidth = 3;
+        star.lineJoin = 'round';
+
+        for (let i = 0; i < 200; i++) {
+            let r = Math.random() * 10 + 10;
+            star.x = canvas.width * Math.random();
+            star.y = canvas.height * Math.random();
+            star.r1 = r;
+            star.r2 = r / 2.0;
+            star.rotation = Math.random() * 2 * Math.PI;
+            star.draw(context);
+        }
+
+    }
+</script>
+</body>
+</html>

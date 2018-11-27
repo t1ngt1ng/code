@@ -27,6 +27,7 @@ Star.prototype.draw = function (context) {
     context.lineWidth = this.lineWidth;
     context.fillStyle = this.color;
     context.strokeStyle = this.lineColor;
+    context.lineJoin = this.lineJoin;
     //绘制的箭头方形和三角形部分相同，均为总长一半
     context.beginPath();
 
