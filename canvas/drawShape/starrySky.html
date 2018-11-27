@@ -7,13 +7,14 @@
     <style>
         canvas {
             border: 1px solid black;
+            display: block;
+            margin: 20px auto;
         }
     </style>
 </head>
 <body>
 
-<h2>utils／shape文件夹下Star.js绘制的使用</h2>
-<canvas id="canvas" width="800" height="800"></canvas>
+<canvas id="canvas" width="1000" height="700"></canvas>
 
 <script>
     window.onload = function () {
@@ -21,17 +22,31 @@
             context = canvas.getContext('2d'),
             star = new Star();
 
-        context.fillStyle = 'rgb(16,47,75)';
+        //背景图片渐变效果，线性渐变
+//        context.fillStyle = 'rgb(16,47,75)';
+//        let grd = context.createLinearGradient(0, 0, 0, canvas.height);
+//        grd.addColorStop(1.0, 'rgb(16,47,75)');
+//        grd.addColorStop(0.0, '#000')
+//        context.fillStyle = grd;
+
+        //背景图片渐变效果，经向渐变
+        let radGrd = context.createRadialGradient(canvas.width / 2, canvas.height, 0, canvas.width / 2, canvas.height, canvas.height + 100)
+        radGrd.addColorStop(0.0, 'rgb(16,47,75)');
+        radGrd.addColorStop(1.0, '#000')
+        context.fillStyle = radGrd;
         context.fillRect(0, 0, canvas.width, canvas.height)
+
+        //给星星添加属性
         star.color = 'rgb(245,237,227)';
         star.lineColor = 'rgba(206,204,251,0.5)';
         star.lineWidth = 3;
         star.lineJoin = 'round';
 
+        //生成星星参数，绘制
         for (let i = 0; i < 200; i++) {
-            let r = Math.random() * 10 + 10;
+            let r = Math.random() * 5 + 5;
             star.x = canvas.width * Math.random();
-            star.y = canvas.height * Math.random();
+            star.y = canvas.height * Math.random() * 0.65;
             star.r1 = r;
             star.r2 = r / 2.0;
             star.rotation = Math.random() * 2 * Math.PI;
