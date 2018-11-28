@@ -5,10 +5,10 @@
  *  example:    code/canvas/drawShape/drawStar.html
  */
 
-function Star(r1 = 160, r2 = 80, color = "yellow") {
+function Star(r1 = 160, r2 = 80, color) {
     this.x = 0;
     this.y = 0;
-    this.color = color;//填充颜色
+    this.color = color||"yellow";//填充颜色
     this.rotation = 0;//旋转角度，传入弧度值，默认指向向右
     this.lineWidth = 1;//默认线宽
     this.lineColor = color;//边线颜色

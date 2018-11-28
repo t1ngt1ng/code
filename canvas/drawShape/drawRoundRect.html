@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制星星</title>
+    <script src="../utils/shape/RoundRect.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<h2>utils／shape文件夹下RoundRect.js绘制的使用</h2>
+<canvas id="canvas" width="1000" height="600"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d'),
+            roundRect = new RoundRect(500, 500, 10, "#bbada0");
+
+        /**
+         * 关于x,y有一些思考，本来放在图形中点的位置，但是再绘制如下方格的时候
+         * 发现会让整个过程变得复杂，所有修改x,y为左上角坐标
+         * */
+        roundRect.x = canvas.width / 2 - 500 / 2;
+        roundRect.y = canvas.height / 2 - 500 / 2;
+
+        roundRect.draw(context);
+
+
+        let roundRect1 = new RoundRect(100, 100, 6, '#ccc0b3'),
+            padding = 20;
+//        roundRect1.lineColor = '#ccc0b3';
+
+        for (let i = 0; i < 4; i++) {
+
+            for (let j = 0; j < 4; j++) {
+                roundRect1.x = padding + (100 + padding) * i + (canvas.width / 2 - 500 / 2);
+                roundRect1.y = padding + (100 + padding) * j + (canvas.height / 2 - 500 / 2);
+                console.log(roundRect1.x, roundRect1.y);
+                roundRect1.draw(context);
+            }
+        }
+
+
+    }
+</script>
+</body>
+</html>

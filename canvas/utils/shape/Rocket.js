@@ -4,13 +4,13 @@
  *  description :火箭，可选择是否显示助推火焰
  */
 
-function Rocket(width = 25, height = 20, color = "#000000") {
+function Rocket(width = 25, height = 20, color ) {
     this.x = 0;
     this.y = 0;
     this.width = width;
     this.height = height;
     this.rotation = 0;
-    this.color = color;
+    this.color = color||' = "#000000"';
     this.showFlame = false;//是否显示火焰
 }
 

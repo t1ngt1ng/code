@@ -11,6 +11,7 @@ canvas
 &emsp;&emsp;&emsp;&emsp;---- Ball.js(球)   
 &emsp;&emsp;&emsp;&emsp;---- Rocket.js(火箭)   
 &emsp;&emsp;&emsp;&emsp;---- Star.js(星星)   
+&emsp;&emsp;&emsp;&emsp;---- RoundRect.js(圆角矩形)   
 
 &emsp;- drawShape(绘制图形)  
 &emsp;&emsp;-- drawArrow.html(绘制箭头)  
@@ -18,6 +19,7 @@ canvas
 &emsp;&emsp;-- drawRocket.html(绘制火箭)   
 &emsp;&emsp;-- drawStar.html(绘制星星)   
 &emsp;&emsp;-- starrySky.html(绘制星空)   
+&emsp;&emsp;-- drawRoundRect.html(绘制圆角矩形，4x4)   
 
 &emsp;- move(移动路径)    
 &emsp;&emsp;-- bobbing.html(上下来回运动)    

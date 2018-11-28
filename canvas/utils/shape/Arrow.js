@@ -5,10 +5,10 @@
  *  example:    code/canvas/drawShape/drawArrow.html
  */
 
-function Arrow(width = 100, color = '#000000') {
+function Arrow(width = 100, color) {
     this.x = 0;
     this.y = 0;
-    this.color = color;//填充颜色
+    this.color = color || '#000';//填充颜色
     this.rotation = 0;//旋转角度，传入弧度值，默认指向向右
     this.width = width;//整个箭头宽
     this.lineWidth = 1;//默认线宽
