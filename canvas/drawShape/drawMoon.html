@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制月亮</title>
+    <script src="../utils/shape/Moon1.js"></script>
+    <script src="../utils/shape/Moon.js"></script>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="1000" height="1000"></canvas>
+
+<script>
+    window.onload = function () {
+        let canvas = document.getElementById('canvas'),
+            context = canvas.getContext('2d');
+
+        let moon = new Moon();
+//      moon.lineColor='yellow';
+        moon.x = canvas.width / 2 + 200;
+        moon.y = canvas.height / 2 + 200;
+        moon.draw(context);
+
+        let moon1 = new Moon1(2);
+        moon1.x = canvas.width / 2 - 200;
+        moon1.y = canvas.height / 2 - 200;
+        moon1.draw(context);
+
+
+    }
+</script>
+</body>
+</html>
