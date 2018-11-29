@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>绘制星星</title>
     <script src="../utils/shape/Star.js"></script>
+    <script src="../utils/shape/Moon.js"></script>
+
     <style>
         canvas {
             border: 1px solid black;
@@ -20,7 +22,8 @@
     window.onload = function () {
         let canvas = document.getElementById('canvas'),
             context = canvas.getContext('2d'),
-            star = new Star();
+            star = new Star(),
+            moon = new Moon(100, 'rgba(250,250,0,1)');
 
         //背景图片渐变效果，线性渐变
 //        context.fillStyle = 'rgb(16,47,75)';
@@ -36,11 +39,15 @@
         context.fillStyle = radGrd;
         context.fillRect(0, 0, canvas.width, canvas.height)
 
+        //绘制陆地
+        drawLand();
+
         //给星星添加属性
         star.color = 'rgb(245,237,227)';
         star.lineColor = 'rgba(206,204,251,0.5)';
         star.lineWidth = 3;
         star.lineJoin = 'round';
+
 
         //生成星星参数，绘制
         for (let i = 0; i < 200; i++) {
@@ -53,7 +60,35 @@
             star.draw(context);
         }
 
+
+        //绘制月亮
+        moon.x = 800;
+        moon.y = 150;
+        moon.rotation = Math.PI / 8;
+        moon.lineColor = '#aaa';
+        moon.draw(context);
+
+
+        function drawLand() {
+            context.save();
+            context.moveTo(0, 600);
+            context.bezierCurveTo(540, 400, 660, canvas.height, canvas.width, 600);
+            context.lineTo(canvas.width, canvas.height);
+            context.lineTo(0, canvas.height);
+
+            let landStyle = context.createLinearGradient(0, canvas.height, 0, 0);
+            landStyle.addColorStop(0.0, '#030');
+            landStyle.addColorStop(1.0, '#580');
+
+            context.fillStyle = landStyle;
+            context.closePath();
+            context.fill();
+            context.stroke();
+            context.restore();
+        }
     }
+
+
 </script>
 </body>
 </html>
