@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #container {
+        position: relative;
+        width: 500px;
+        height: 300px;
+        margin: 10px auto;
+    }
+
+    #canvas {
+        display: block;
+        border: 1px solid #999;
+    }
+
+    #pane {
+        top: 10px;
+        left: 10px;
+        position: absolute;
+        width: 140px;
+        height: 100px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #aaa;
+        box-shadow: #aaaaaa 6px 6px;
+    }
+
+    .btn {
+        margin: 8px;
+        display: inline-block;
+        width: 70px;
+        height: 30px;
+        border-radius: 6px 6px;
+        border: 1px solid black;
+        background-color: lightblue;
+    }
+</style>
+<body>
+
+<div id="container">
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <div id="pane">
+        <a id="star" class="btn">开始</a>
+        <a id="cancel" class="btn">取消</a>
+    </div>
+</div>
+
+<script>
+    let canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        star = document.getElementById('star'),
+        cancel = document.getElementById('cancel'),
+        isStaring = false,
+        centerX = canvas.width / 2,
+        centerY = canvas.height / 2;
+
+    star.addEventListener('click', function (e) {
+        //这个地方我只是想做一个切换文字，其实不需要这个切换，开始和重置一个效果
+        if (isStaring) {
+            draw();
+            isStaring = false;
+            this.text = '开始';
+        } else {
+            draw();
+            isStaring = true;
+            this.text = '重置'
+        }
+    }, false);
+
+
+    function draw(color) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        writeText();
+        drawRound(color);
+        //如果想尝试fillRect和strokeRect是否无法被isPointInPath检测，可以调用以下方法
+        //rect()
+    }
+
+    //绘制小球，可传入颜色
+    function drawRound(color) {
+        context.save();
+        context.beginPath();
+        context.lineWidth = 1;
+        context.arc(centerX, centerY, 80, 0, Math.PI * 2);
+        context.fillStyle = color || '#aaa';
+        context.fill();
+        context.restore();
+    }
+
+    //文字显示
+    function writeText() {
+        context.save();
+        context.font = 'bold 20px Arial black';
+        let str = '点击小球变色',
+            fontW = context.measureText(str).width;
+        context.fillText(str, centerX - (fontW / 2), 45);
+        context.restore();
+    }
+
+    canvas.addEventListener('click', function (e) {
+        let flag = context.isPointInPath(e.clientX - canvas.getBoundingClientRect().left,
+            e.clientY - canvas.getBoundingClientRect().top);
+        console.log('this is flag', flag);
+        if (flag) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            draw('rgb(' + Math.random() * 255 + ',' + Math.random() * 255 + ',' + Math.random() * 255 + ')');
+        }
+    });
+
+    cancel.addEventListener('click', function () {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        isStaring = false;
+        star.text = '开始';
+    }, false);
+
+    /**
+     * 以下两个绘制rect的方法无法被isPointInPath检测
+     */
+    function rect() {
+
+        context.beginPath();
+//      context.fillRect(centerX, centerY,100,100)
+        context.strokeRect(centerX, centerY, 100, 100)
+    }
+
+
+</script>
+
+
+</body>
+</html>
