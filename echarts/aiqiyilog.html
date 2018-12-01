@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>热度趋势</title>
+    <script src="echarts.common.min.js"></script>
+    <script src="datas/get_index_trend.js"></script>
+    <script src="hot.js"></script>
+</head>
+<style>
+    div {
+        margin: 30px
+    }
+</style>
+<body>
+
+<body>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div id="hot" style="width: 980px;height:380px;"></div>
+
+<!--<div id="dist" style="width: 980px;height:310px;"></div>-->
+</body>
+
+<script>
+    window.onload = function () {
+
+        var hot = echarts.init(document.getElementById('hot'));
+
+        let hotOption = getHotOption(data.trend.playtime, data.trend.details[0].data, data.trend.names[0]);
+
+        hot.setOption(hotOption);
+
+    }
+
+
+</script>
+
+
+</body>
+</html>
