@@ -17,9 +17,6 @@ function getHotOption(data) {
     let dataFormat = yData.map(item => item / Math.pow(10, yObj.length - 1));
 
     let option = {
-        title: {
-            text: '内容热度'
-        },
         textStyle: {
             color: '#bbb'
         },
@@ -32,10 +29,16 @@ function getHotOption(data) {
                 }
             }
         },
+        legend: {
+            icon: 'roundRect',
+            orient: 'horizontal',
+            y: 'bottom',
+            data: [name]
+        },
         grid: {
             left: '3%',
             right: '4%',
-            bottom: '3%',
+            bottom: '12%',
             containLabel: true
         },
         xAxis: [

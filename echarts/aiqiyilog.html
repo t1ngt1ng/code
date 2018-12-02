@@ -3,33 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>热度趋势</title>
-    <script src="echarts.common.min.js"></script>
+    <script src="js/echarts.common.min.js"></script>
     <script src="datas/get_index_trend.js"></script>
-    <script src="hot.js"></script>
+    <script src="js/hot.js"></script>
+    <script src="js/dist.js"></script>
 </head>
 <style>
-    div {
-        margin: 30px
+    .container {
+        width: 1000px;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .title {
+        height: 21px;
+        line-height: 21px;
+        font-size: 18px;
+        color: #000;
+    }
+
+    .title::before {
+        content: "";
+        width: 3px;
+        height: 20px;
+        background-color: #5aa700;
+        display: inline-block;
+        margin-right: 8px;
+        vertical-align: -3px;
+    }
+
+    em {
+        font-style: normal;
     }
 </style>
 <body>
 
 <body>
-<div id="hot" style="width: 980px;height:380px;"></div>
+<div class="container">
+    <h3 class="title"><em>内容热度</em></h3>
+    <div id="hot" style="width: 980px;height:380px;"></div>
+    <h3 class="title"><em>播放设备分布</em></h3>
+    <div id="dist" style="width: 980px;height:310px;"></div>
+</div>
 </body>
 
 <script>
     window.onload = function () {
 
-       //内容热度图
+        //内容热度图
         let hot = echarts.init(document.getElementById('hot')),
-            trendData = data.trend;
-        let hotOption = getHotOption(trendData);
+            dist = echarts.init(document.getElementById('dist'));
 
+        let trendData = data.trend,
+            platform = data.platform;
+
+        let hotOption = getHotOption(trendData);
+        let disOption = getDistOption(platform);
 
 
         hot.setOption(hotOption);
-
+        dist.setOption(disOption);
     }
 
 

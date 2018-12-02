@@ -43,5 +43,9 @@ css
 &emsp;- fontEffect.html (毛玻璃和金属文字效果)  
 
 echarts  （这个其实也属于canvas但是单独放了）    
-&emsp;- aiqiyilog.html (实现爱奇艺指数页面效果)     
-&emsp;- hot.js（内容热度option）   
+&emsp;- aiqiyilog.html (实现爱奇艺指数-热度趋势) 
+&emsp;- aiqiyiPeopleData.html (实现爱奇艺指数-受重画像) 
+&emsp;- js  
+&emsp;&emsp;- hot.js（内容热度option）    
+&emsp;&emsp;- dist.js（播放设备option）  
+&emsp;&emsp;- people.js (性别option) 
