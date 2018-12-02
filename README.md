@@ -37,6 +37,11 @@ canvas
 &emsp;&emsp;-- mouseDistance.html(获取点与鼠标之间的距离)    
 
 &emsp;- others(其他)
-&emsp;&emsp;-- changeColor.html(canvas交互例子，点击小球变色)   
-css
-&emsp;- fontEffect.html (毛玻璃和金属文字效果)
+&emsp;&emsp;-- changeColor.html(canvas交互例子，点击小球变色)  
+ 
+css  
+&emsp;- fontEffect.html (毛玻璃和金属文字效果)  
+
+echarts  （这个其实也属于canvas但是单独放了）    
+&emsp;- aiqiyilog.html (实现爱奇艺指数页面效果)     
+&emsp;- hot.js（内容热度option）   

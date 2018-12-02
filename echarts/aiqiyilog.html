@@ -15,18 +15,18 @@
 <body>
 
 <body>
-<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
 <div id="hot" style="width: 980px;height:380px;"></div>
-
-<!--<div id="dist" style="width: 980px;height:310px;"></div>-->
 </body>
 
 <script>
     window.onload = function () {
 
-        var hot = echarts.init(document.getElementById('hot'));
+       //内容热度图
+        let hot = echarts.init(document.getElementById('hot')),
+            trendData = data.trend;
+        let hotOption = getHotOption(trendData);
 
-        let hotOption = getHotOption(data.trend.playtime, data.trend.details[0].data, data.trend.names[0]);
+
 
         hot.setOption(hotOption);
 
