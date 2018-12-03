@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../utils/shape/Star.js"></script>
+    <style>
+        /*canvas {*/
+        /*border: 1px solid #aaa;*/
+        /*}*/
+
+        #canvasBg {
+            display: block;
+            position: absolute;
+            left: 0px;
+            top: 10px;
+            border: 1px solid #aaa;
+
+        }
+
+        #canvas {
+            display: block;
+            position: absolute;
+            left: 0px;
+            top: 10px;
+            border: 1px solid red;
+
+        }
+
+        .container {
+            position: relative;
+            width: 480px;
+            height: 200px;
+            display: block;
+            margin: 0 auto;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvasBg" width="480" height="300"></canvas>
+    <canvas id="canvas" width="480" height="300"></canvas>
+</div>
+
+<script>
+    window.onload = function () {
+        let canvasBg = document.getElementById('canvasBg'),
+            canvas = document.getElementById('canvas'),
+            r = 40, space = 20;
+
+
+        drawCanvasBg(canvasBg, r, space);
+        drawStar(canvas, r, space);
+
+    }
+
+    function drawStar(canvas, r, space) {
+        let context = canvas.getContext('2d'),
+            stars = 0;
+
+        canvas.addEventListener('touchstart', function (e) {
+            let mouse = captureMouse(e, canvas);
+
+            stars = Math.floor((mouse.x + space) / (2 * r + 20)) + 1;
+            drawCanvasBg(canvasBg, r, space, stars);//背景绘制星星
+            drawCanvasBg1(canvas, r, space, stars);//上层绘制星星
+
+
+        })
+    }
+
+    function drawCanvasBg1(canvas, r, space, starsNum) {
+        let context = canvas.getContext('2d'),
+            star = new Star(r, r / 2, '#ee0'),
+            height = 2 * r > (canvas.height / 2) ? 2 * r : (canvas.height / 2),//当前评星的y值
+            positions = [];
+        console.log(height)
+
+        for (let i = 0; i < starsNum; i++) {
+            positions.push({
+                x: r + i * (2 * r + 20),
+                y: height
+            })
+        }
+        let lastPosition = positions[positions.length - 1];
+
+        console.log('this is last positoon y', lastPosition.y)
+        //上升目标点（最后一颗星位置的上方）
+        let target = {
+            x: positions[positions.length - 1].x,//最后一颗星位置
+            y: height > 2 * r ? height - (2 * r) : r//定位在上方一颗星位置
+        };//目标位置
+        console.log('this is y', target.y)
+        let lastY = lastPosition.y,
+            targetY = target.y;
+
+        let animate = animate2 = starsNum > 0 ? true : false;//是否显示动画
+        //        let animate = false;
+        (function drawFrame() {
+            let frame = window.requestAnimationFrame(drawFrame, canvas);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            if (animate) {
+                let res = moveStar(context, star, positions, target, starsNum);
+                console.log(res);
+                if (res === false) animate = false;
+            }
+            else {
+                if (animate2) {
+                    lastPosition.y = lastY;
+                    let back = window.requestAnimationFrame(() => {
+                        context.clearRect(0, 0, canvas.width, canvas.height);
+
+                        let res = this.starBack(context, star, lastPosition, target);
+
+                        if (res === false) {
+                            if (starsNum !== 1) {
+                                target.y = targetY;
+                                --starsNum;
+                            } else {
+                                window.cancelAnimationFrame(back);
+                                animate2 = false
+                            }
+                        }
+
+                    }, canvas);
+                } else {
+                    //取消动画
+                    window.cancelAnimationFrame(frame);
+                }
+            }
+        })()
+    }
+
+    function starBack(context, star, lastPosition, target) {
+
+        drawStartInBg(star, target);
+        if (lastPosition.y > target.y) {
+            target.y += 4;
+        } else {
+            return false;
+        }
+        star.x = target.x;
+        star.y = target.y;
+        star.draw(context);
+    }
+
+    function moveStar(context, star, positions, target, starsNum) {
+
+        if (positions.length < starsNum) {
+            drawStartInBg(star, target);
+        }
+        let pos = positions[0],
+            angle = getAngele(pos, target);
+
+        if (pos.x < target.x) {
+            positions[0].x = pos.x + Math.floor((Math.cos(angle) * 5));
+        }
+        if (pos.y > target.y) {
+
+            positions[0].y = pos.y + Math.floor((Math.sin(angle) * 5));
+        }
+        star.x = positions[0].x;
+        star.y = positions[0].y;
+        star.draw(context);
+
+        if (( positions[0].x >= target.x) && ( positions[0].y <= target.y)) {
+
+            positions.shift();
+        }
+        if (positions.length <= 0) {
+            return false;
+        }
+    }
+
+    /**
+     * 计算两个点的角度
+     * */
+    function getAngele(orign, target) {
+        let y = target.y - orign.y;
+        let x = target.x - orign.y;
+        console.log(y, x)
+        return Math.atan2(y, x);
+    }
+
+    function drawStartInBg(star, target) {
+        star.x = target.x;
+        star.y = target.y;
+        star.draw(canvas.getContext('2d'));
+    }
+
+    function drawCanvasBg(canvas, r, space, starsNum) {
+        let context = canvas.getContext('2d'),
+            star = new Star(r, r / 2),
+            height = 2 * r > (canvas.height / 2) ? 2 * r : (canvas.height / 2);
+
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (i = 0; i < 5; i++) {
+            (starsNum >= 1) && (i + 1 <= starsNum) ?
+                star.color = star.lineColor = '#ee0' : star.color = star.lineColor = 'rgba(233,233,233,0.5)';
+            star.x = r + i * (2 * r + 20);
+            star.y = height;
+            star.draw(context)
+        }
+    }
+
+    function captureMouse(e, canvas) {
+        return {
+            x: Math.floor(e.touches[0].clientX - canvas.getBoundingClientRect().left),
+            y: Math.floor(e.touches[0].clientY - canvas.getBoundingClientRect().top)
+        }
+    }
+</script>
+
+</body>
+</html>

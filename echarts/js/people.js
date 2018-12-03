@@ -20,6 +20,7 @@ function getMaleOption(data) {
             type: 'category',
             data: xLabels,
             axisLine: {show: false},
+            axisTick:{show: false},
             axisLabel: {show: true}
         }],
         yAxis: [{

@@ -23,6 +23,8 @@ canvas
 &emsp;&emsp;-- starrySky.html(绘制星空)   
 &emsp;&emsp;-- drawRoundRect.html(绘制圆角矩形，4x4)   
 &emsp;&emsp;-- drawMoon.html(绘制月亮，2种)   
+&emsp;&emsp;-- reviewStar.html(同事一个效果的模仿，评星时星星上升再下降，
+微信animation好像更好做动画，这里就原生实现了)   
 
 &emsp;- move(移动路径)    
 &emsp;&emsp;-- bobbing.html(上下来回运动)    
