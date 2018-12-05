@@ -38,6 +38,7 @@
     </style>
 </head>
 <body>
+用了touch事件，请模拟手机
 <div class="container">
     <canvas id="canvasBg" width="480" height="300"></canvas>
     <canvas id="canvas" width="480" height="300"></canvas>
@@ -74,56 +75,51 @@
         let context = canvas.getContext('2d'),
             star = new Star(r, r / 2, '#ee0'),
             height = 2 * r > (canvas.height / 2) ? 2 * r : (canvas.height / 2),//当前评星的y值
-            positions = [];
-        console.log(height)
+            positions = [],
+            angles = [];
 
+        //星星位置数组
         for (let i = 0; i < starsNum; i++) {
             positions.push({
                 x: r + i * (2 * r + 20),
                 y: height
             })
         }
-        let lastPosition = positions[positions.length - 1];
+        let lastPosition = positions[positions.length - 1];//获取最后一个位置
 
-        console.log('this is last positoon y', lastPosition.y)
-        //上升目标点（最后一颗星位置的上方）
+        //动画上升目标点（最后一颗星位置的上方）
         let target = {
             x: positions[positions.length - 1].x,//最后一颗星位置
             y: height > 2 * r ? height - (2 * r) : r//定位在上方一颗星位置
         };//目标位置
-        console.log('this is y', target.y)
-        let lastY = lastPosition.y,
-            targetY = target.y;
+
+        let lastY = lastPosition.y,//最后一位值得y值
+            targetY = target.y;//目标位置的y值
 
         let animate = animate2 = starsNum > 0 ? true : false;//是否显示动画
-        //        let animate = false;
+
+
         (function drawFrame() {
             let frame = window.requestAnimationFrame(drawFrame, canvas);
             context.clearRect(0, 0, canvas.width, canvas.height);
-            if (animate) {
+            if (animate) {//上升动画
                 let res = moveStar(context, star, positions, target, starsNum);
-                console.log(res);
                 if (res === false) animate = false;
             }
             else {
-                if (animate2) {
+                if (animate2) {//下落动画
                     lastPosition.y = lastY;
-                    let back = window.requestAnimationFrame(() => {
-                        context.clearRect(0, 0, canvas.width, canvas.height);
+                    drawStart(context, star, target);
 
-                        let res = this.starBack(context, star, lastPosition, target);
-
-                        if (res === false) {
-                            if (starsNum !== 1) {
-                                target.y = targetY;
-                                --starsNum;
-                            } else {
-                                window.cancelAnimationFrame(back);
-                                animate2 = false
-                            }
+                    let res = this.starBack(context, star, lastPosition, target);
+                    if (res === false) {
+                        if (starsNum !== 1) {
+                            target.y = targetY;
+                            --starsNum;
+                        } else {
+                            animate2 = false
                         }
-
-                    }, canvas);
+                    }
                 } else {
                     //取消动画
                     window.cancelAnimationFrame(frame);
@@ -132,9 +128,9 @@
         })()
     }
 
+    //星星由target位置下落
     function starBack(context, star, lastPosition, target) {
-
-        drawStartInBg(star, target);
+        drawStart(context, star, target);
         if (lastPosition.y > target.y) {
             target.y += 4;
         } else {
@@ -145,32 +141,31 @@
         star.draw(context);
     }
 
+    //星星从当前位置移动到目标位置
     function moveStar(context, star, positions, target, starsNum) {
-
+        if (positions.length <= 0) {
+            return false;
+        }
         if (positions.length < starsNum) {
-            drawStartInBg(star, target);
+            drawStart(context, star, target);
         }
         let pos = positions[0],
-            angle = getAngele(pos, target);
+            angle = getAngele(pos, target)
 
-        if (pos.x < target.x) {
-            positions[0].x = pos.x + Math.floor((Math.cos(angle) * 5));
+        if (positions[0].x < target.x) {
+            positions[0].x += Math.floor((Math.cos(angle) * 5));
         }
-        if (pos.y > target.y) {
-
-            positions[0].y = pos.y + Math.floor((Math.sin(angle) * 5));
+        if (positions[0].y > target.y) {
+            positions[0].y += Math.floor((Math.sin(angle) * 5));
         }
         star.x = positions[0].x;
         star.y = positions[0].y;
         star.draw(context);
 
         if (( positions[0].x >= target.x) && ( positions[0].y <= target.y)) {
-
             positions.shift();
         }
-        if (positions.length <= 0) {
-            return false;
-        }
+
     }
 
     /**
@@ -178,22 +173,22 @@
      * */
     function getAngele(orign, target) {
         let y = target.y - orign.y;
-        let x = target.x - orign.y;
-        console.log(y, x)
+        let x = target.x - orign.x;
         return Math.atan2(y, x);
     }
 
-    function drawStartInBg(star, target) {
+    function drawStart(context, star, target) {
+
         star.x = target.x;
         star.y = target.y;
-        star.draw(canvas.getContext('2d'));
+        star.draw(context);
     }
 
+    //绘制背景的星星
     function drawCanvasBg(canvas, r, space, starsNum) {
         let context = canvas.getContext('2d'),
             star = new Star(r, r / 2),
             height = 2 * r > (canvas.height / 2) ? 2 * r : (canvas.height / 2);
-
 
         context.clearRect(0, 0, canvas.width, canvas.height);
 
