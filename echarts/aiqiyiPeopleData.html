@@ -3,20 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/echarts.common.min.js"></script>
+    <script src="js/echars-min.js"></script>
     <script src="datas/get_user_profile.js"></script>
     <script src="js/people.js"></script>
+    <style>
+        div {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
     <div id="male" style="width: 490px;height:350px;"></div>
+    <div id="age" style="width: 490px;height:350px;"></div>
+    <div id="star" style="width: 490px;height:350px;"></div>
+
+
 </div>
 <script>
-    var male = echarts.init(document.getElementById('male'));
-    let maleOption = getMaleOption(data);
+    var male = echarts.init(document.getElementById('male')),
+        age = echarts.init(document.getElementById('age')),
+        star = echarts.init(document.getElementById('star'));
+
+    let maleOption = getMaleOption(data),
+        ageOption = getAgeOption(data),
+        starOption = getConstellaOption(data);
 
     male.setOption(maleOption);
+    age.setOption(ageOption);
+    star.setOption(starOption)
 </script>
 
 </body>

@@ -50,4 +50,5 @@ echarts  （这个其实也属于canvas但是单独放了）
 &emsp;- js  
 &emsp;&emsp;- hot.js（内容热度option）    
 &emsp;&emsp;- dist.js（播放设备option）  
-&emsp;&emsp;- people.js (性别option) 
+&emsp;&emsp;- people.js (性别、年龄、星座option) 
+
