@@ -46,7 +46,7 @@ css
 
 echarts  （这个其实也属于canvas但是单独放了）    
 &emsp;- aiqiyilog.html (实现爱奇艺指数-热度趋势) 
-&emsp;- aiqiyiPeopleData.html (实现爱奇艺指数-受重画像) 
+&emsp;- aiqiyiPeopleData.html (实现爱奇艺指数-受0重画像) 
 &emsp;- js  
 &emsp;&emsp;- hot.js（内容热度option）    
 &emsp;&emsp;- dist.js（播放设备option）  

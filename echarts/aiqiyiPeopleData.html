@@ -8,31 +8,99 @@
     <script src="js/people.js"></script>
     <style>
         div {
-            border: 1px solid black;
+            display: block;
+            /*border: 1px solid black;*/
         }
+        *{
+            padding: 0;
+            margin:0;
+        }
+
+        .container {
+            width: 990px;
+            height: 100%;
+            margin: 60px auto 0;
+        }
+
+        /*.gender-part {*/
+            /*width: 490px;*/
+            /*display: inline-block;*/
+        /*}*/
+
+        .chart-part {
+            width: 490px;
+            display: inline-block;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .title {
+            height: 21px;
+            line-height: 21px;
+            font-size: 18px;
+            color: #000;
+        }
+
+        .title::before {
+            content: "";
+            width: 3px;
+            height: 20px;
+            background-color: #5aa700;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: -3px;
+        }
+
+        em {
+            font-style: normal;
+            font-weight: normal;
+        }
+
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div id="male" style="width: 490px;height:350px;"></div>
-    <div id="age" style="width: 490px;height:350px;"></div>
-    <div id="star" style="width: 490px;height:350px;"></div>
+    <div class="chart-part">
+        <h3 class="title"><em>性别</em></h3>
+        <div id="male" style="width: 490px;height:350px;"></div>
+    </div>
 
-
+    <div class="chart-part">
+        <h3 class="title"><em> 年龄</em></h3>
+        <div id="age" style="width: 490px;height:350px;"></div>
+    </div>
+    <div class="chart-part">
+        <h3 class="title"><em>星座</em></h3>
+        <div id="star"  style="width: 490px;height:350px;"></div>
+    </div>
+    <div class="chart-part">
+        <h3 class="title"><em>学历</em></h3>
+        <div id="education"  style="width: 490px;height:350px;"></div>
+    </div>
+    <div class="chart-part">
+        <h3 class="title"><em>兴趣</em></h3>
+        <div id="interest" style="width: 980px;height:350px;"></div>
+    </div>
 </div>
 <script>
     var male = echarts.init(document.getElementById('male')),
         age = echarts.init(document.getElementById('age')),
-        star = echarts.init(document.getElementById('star'));
+        star = echarts.init(document.getElementById('star')),
+        education = echarts.init(document.getElementById('education')),
+        interest = echarts.init(document.getElementById('interest'));
 
     let maleOption = getMaleOption(data),
         ageOption = getAgeOption(data),
-        starOption = getConstellaOption(data);
+        starOption = getConstellaOption(data),
+        eduOption = getEducationOption(data),
+        intOption = getInterestOption(data);
 
     male.setOption(maleOption);
     age.setOption(ageOption);
-    star.setOption(starOption)
+    star.setOption(starOption);
+    education.setOption(eduOption);
+    interest.setOption(intOption);
 </script>
 
 </body>
