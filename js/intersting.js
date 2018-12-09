@@ -95,11 +95,16 @@ function arraysPlus(arr1, arr2) {
  * let arrs = [23, 6, 657, 34];
  * maxMin(arrs, 'min')
  * 之前echarts仿阿奇艺指数中用到，总结的方法
+ * 这个地方我理解了一下，call和apply的不同就在于参数的传递
+ * apply的参数可以是整个arguments，也就是把整个数组传进去，他会当成是该方法的每个参数
+ * 也就相当于传入的是每一个参数，这里appley第一个参数传this，null，Math是一样的
  * */
 
 function maxMin(arrs, type) {
-    //两种返回都可以
-    return Math[type].apply(null, arrs)
+    //三种返回都可以
+    return Math[type].apply(this, arrs);
+    // return Math[type].apply(null, arrs)
+    // return Math[type].apply(Math, arrs);
     // return type === 'max' ? Math.max.apply(null, arrs) : Math.min.apply(null, arrs);
 }
 
@@ -116,6 +121,44 @@ function objToArr(obj) {
     return Array.prototype.slice.call(arguments);
 }
 
+/**
+ * 删除数组元素
+ * 使用delete将当前位置滞空[22, 2, empty, 3, 4]
+ * 完全删除数据，不再占用当前位置要使用splice
+ * splice还可以用于添加和替换数组元素
+ * */
+let arr1 = [22, 2, 2, 3, 4];
+delete arr1[2];//
+console.log(arr1);
+console.log(arr1.length);
+arr1.splice(2, 1);
+console.log(arr1);
+console.log(arr1.length);
 
 
+
+
+/**
+ * 这里验证一下原始操作比函数调用快，
+ * 操作的内容是，比较两个数的大小，把小的数放入数组
+ * 第一种方法：
+ * Math.min   array.push
+ * 第二种方法：
+ * a > b ? b : a  array[array.length]
+ * 结果：第一种时差是3，第二种是2，所以确实如此
+ * */
+let a = 2, b = 3, array = [];//a.b要比较的数，array数组
+let time1 = new Date().getTime();//记录操作前时间
+//第一种方法
+let min = Math.min(a, b);
+array.push(min);
+//第二种方法
+// let min = a > b ? b : a;
+// array[array.length] = min
+
+//这里打印一下数组因为上面操作太快了，不打印时差是0
+console.log(array)
+
+let time2 = new Date().getTime();//记录操作后时间
+console.log(time2 - time1);//输出时间差
 
