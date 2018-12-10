@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>热度趋势</title>
-    <script src="js/echarts.common.min.js"></script>
+    <script src="js/echarts2.0.js"></script>
     <script src="datas/get_index_trend.js"></script>
     <script src="js/hot.js"></script>
     <script src="js/dist.js"></script>
+    <script src="js/province.js"></script>
+    <script src="js/china.js"></script>
 </head>
 <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
     .container {
         width: 1000px;
         height: 100%;
@@ -34,6 +41,50 @@
 
     em {
         font-style: normal;
+        font-weight: normal;
+    }
+
+    .rank {
+        width: 240px;
+        height: 100%;
+        float: right;
+    }
+
+    .topNum {
+        float: left;
+        width: 13px;
+        height: 220px;
+        margin-left: -105px;
+        margin-top: 200px;
+    }
+
+    .map {
+        width: 740px;
+        height: 100%;
+        float: left;
+    }
+
+    div:after, ul:after, dl:after {
+        content: "";
+        display: block;
+        clear: both;
+        height: 0;
+        visibility: hidden;
+    }
+
+    #rank {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .bar {
+        position: relative;
+        float: left;
+        width: 240px;
+        height: 320px;
+        margin-left: -90px;
+        margin-top: 134px;
     }
 </style>
 <body>
@@ -44,6 +95,18 @@
     <div id="hot" style="width: 980px;height:380px;"></div>
     <h3 class="title"><em>播放设备分布</em></h3>
     <div id="dist" style="width: 980px;height:310px;"></div>
+    <h3 class="title"><em>播放地域分布</em></h3>
+    <div>
+        <div class="map">
+            <div id="area" style="width: 740px;height:460px;"></div>
+        </div>
+        <div class="rank">
+            <img class="topNum" src="icon-list.png" alt="">
+            <div class="bar">
+                <div id="rank" style="width: 240px;height:320px;"></div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 
@@ -52,17 +115,31 @@
 
         //内容热度图
         let hot = echarts.init(document.getElementById('hot')),
-            dist = echarts.init(document.getElementById('dist'));
+            dist = echarts.init(document.getElementById('dist')),
+            area = echarts.init(document.getElementById('area')),
+            rank = echarts.init(document.getElementById('rank'));
+
 
         let trendData = data.trend,
-            platform = data.platform;
+            platform = data.platform,
+            province = data.province;
+
+       let provinceList = data.province.data[0];
+
+        let rankList = [];
+        //此处去数组前十个，压入新数组，因为echarts的显示是反向的
+        for (let i = 0; rankList.length < 10; rankList.unshift(provinceList[i++])) ;
 
         let hotOption = getHotOption(trendData);
         let disOption = getDistOption(platform);
+        let areaOption = getAreaOption(province);
+        let rankOption = getRankOption(rankList);
 
 
         hot.setOption(hotOption);
         dist.setOption(disOption);
+        area.setOption(areaOption);
+        rank.setOption(rankOption);
     }
 
 

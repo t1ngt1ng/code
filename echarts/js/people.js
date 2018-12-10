@@ -259,6 +259,7 @@ function getEducationOption(data) {
         },
         series: [
             {
+                sort:'desc',
                 silent: true,
                 name: name,
                 type: 'bar',
@@ -276,6 +277,7 @@ function getEducationOption(data) {
             }
         ]
     }
+    console.log('22222222')
     return option
 }
 

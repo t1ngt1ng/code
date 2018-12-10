@@ -136,8 +136,6 @@ console.log(arr1);
 console.log(arr1.length);
 
 
-
-
 /**
  * 这里验证一下原始操作比函数调用快，
  * 操作的内容是，比较两个数的大小，把小的数放入数组
@@ -162,3 +160,18 @@ console.log(array)
 let time2 = new Date().getTime();//记录操作后时间
 console.log(time2 - time1);//输出时间差
 
+
+/**
+ * 一个数组，取前十个（正序排列）,倒叙插到另一个数组里
+ * echarts仿阿奇艺指数中用到，总结的方法
+ * let orginArr = [13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+
+ * 调用getTopLimt(orginArr, 10)
+ * */
+
+
+function getTopLimt(orginArr, length) {
+    let resList = [];
+    for (let i = 0; resList.length < length; resList.unshift(orginArr[i++])) ;
+    return resList;
+}

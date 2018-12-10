@@ -51,6 +51,9 @@ echarts  （这个其实也属于canvas但是单独放了）
 &emsp;&emsp;- hot.js（内容热度option）    
 &emsp;&emsp;- dist.js（播放设备option）  
 &emsp;&emsp;- people.js (性别、年龄、星座option) 
+&emsp;&emsp;- province.js (省份地图（echarts2.0），rank option) 
+
+
 
 js  
 &emsp;- intersting.js (有意思的代码～) 
