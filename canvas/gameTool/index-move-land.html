@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏中的移动陆地</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas id="canvas" width="375" height="667"></canvas>
+
+<script>
+    let canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        image = new Image();
+    image.src = './land.png';
+
+
+    let landX = 0,
+        speed = -2,
+        lastTime = 0,
+        now = 0;
+
+
+    image.onload = () => {
+        run()
+
+    };
+
+    function drawImg(width = 0) {
+        console.log(width + landX)
+        context.save()
+//        if (width !== 0) {
+//            landX = pic2Width - landX;
+//            pic2Width = landX
+//        }
+
+        context.drawImage(image, 0, 0, image.width, image.height,
+            (width !== 0) ? (width + landX) : landX, canvas.height - image.height, image.width, image.height);
+        context.restore()
+    }
+
+    let pic2Width = image.width + canvas.width;
+
+    function run() {
+
+        window.requestAnimationFrame(() => run());
+        landX += speed;//x坐标增加
+//
+//        if (image.width - Math.abs(landX) <= 0) {
+//            landX = 0;
+//        }
+//        if (Math.abs(landX) >= image.width - canvas.width) {//为了让图片循环，如果超出图片宽度就从0开始
+//            landX = canvas.width;
+//        }
+        if (Math.abs(landX) === image.width) {
+            landX = 0;
+        }
+        drawImg();
+//        console.log(landX)
+//        console.log(pic2Width)
+        drawImg(image.width - 2)
+    }
+
+
+//    image.onload = () => {
+//        run()
+//    };
+//
+//    function drawImg() {
+//        context.drawImage(image, 0, 0, image.width, image.height,
+//            -landX, canvas.height - image.height, image.width, image.height);
+//    }
+//
+//    function run() {
+//        drawImg();
+//        window.requestAnimationFrame(() => run());
+//        landX += speed;//x坐标增加
+//        if (landX > image.width - canvas.width) {//为了让图片循环，如果超出图片宽度就从0开始
+//            landX = 0;
+//        }
+//    }
+
+
+</script>
+</body>
+</html>

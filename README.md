@@ -40,6 +40,10 @@ canvas
 
 &emsp;- others(其他)
 &emsp;&emsp;-- changeColor.html(canvas交互例子，点击小球变色)  
+
+&emsp;- gameTool(游戏工具)
+&emsp;&emsp;-- index-move-land.html(地面循环移动) 
+ 
  
 css  
 &emsp;- fontEffect.html (毛玻璃和金属文字效果)  
