@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运动的精灵类</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas id="canvas" width="375" height="667"></canvas>
+
+<script>
+    let canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        image = new Image();
+    image.src = './birds.png';
+
+
+    let centerX = canvas.width / 2,
+        centerY = canvas.height / 2;
+
+    let birdWidth = 34;
+    let birdHeight = 24;
+    let leftRight = 9;
+    let topBottom = 10;
+
+
+    birds = [
+        {left: leftRight, top: topBottom, width: birdWidth, height: birdHeight},
+        {left: leftRight + birdWidth + 2 * leftRight, top: topBottom, width: birdWidth, height: birdHeight},
+        {left: image.width - leftRight - birdWidth, top: topBottom, width: birdWidth, height: birdHeight}
+    ];
+
+    image.onload = () => {
+        run()
+    };
+
+    function drawImg(bird) {
+
+        context.save();
+        context.drawImage(image, bird.left, bird.top, bird.width, bird.height,
+            centerX, centerY, bird.width, image.height);
+        context.restore()
+    }
+
+    let place = 0;
+
+    function run() {
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        window.requestAnimationFrame(() => run());
+
+        drawImg(birds[place]);
+        place < birds.length - 1 ? place++ : place = 0;
+
+    }
+
+
+</script>
+</body>
+</html>

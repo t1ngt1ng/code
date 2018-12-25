@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游戏中的移动陆地</title>
+    <style>
+        canvas {
+            position: absolute;
+            top: 30px;
+            left: 10px;
+            border: 1px solid black;
+        }
+
+        body {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+<canvas id="canvas" width="375" height="512"></canvas>
+
+<script>
+    let canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        sky = new Image();
+    sky.src = './sky.png';
+
+
+    let landX = 0,
+        speed = -2,
+        skyOffset = 0;
+
+
+    sky.onload = () => {
+        run()
+
+    };
+
+    function drawImg() {
+
+        skyOffset = Math.abs(skyOffset) < sky.width ? skyOffset + speed : 0;
+
+        context.save();
+        context.translate(skyOffset, 0);
+        context.drawImage(sky, 0, 0);
+        context.drawImage(sky, sky.width - 2, 0)
+        context.restore();
+    }
+
+
+    function run() {
+
+        window.requestAnimationFrame(() => run());
+        landX += speed;//x坐标增加
+
+        if (Math.abs(landX) === sky.width) {
+            landX = 0;
+        }
+        drawImg();
+//        drawImg(image.width - 2)
+    }
+
+
+</script>
+</body>
+</html>
