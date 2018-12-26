@@ -48,14 +48,25 @@
         context.restore()
     }
 
-    let place = 0;
+    let place = 0,
+        lastTime = (new Date).getTime(), total = 0;
+
 
     function run() {
-        context.clearRect(0, 0, canvas.width, canvas.height)
-        window.requestAnimationFrame(() => run());
 
-        drawImg(birds[place]);
-        place < birds.length - 1 ? place++ : place = 0;
+        window.requestAnimationFrame(() => run());
+        let now = (new Date).getTime();
+
+        total = total + (now - lastTime);
+
+        if (total >= 60) {
+
+            drawImg(birds[place]);
+            place < birds.length - 1 ? place++ : place = 0;
+            total = 0;
+        }
+
+        lastTime = now;
 
     }
 

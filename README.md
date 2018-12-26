@@ -44,6 +44,7 @@ canvas
 &emsp;- gameTool(游戏工具)
 &emsp;&emsp;-- index-move-land.html(地面循环移动，截取变化) 
 &emsp;&emsp;-- index-move-sky.html(天空循环移动，translate变化) 
+&emsp;&emsp;-- sprite-brids.html(小鸟精灵类切换) 
  
  
 css  
