@@ -29,7 +29,6 @@
     let leftRight = 9;
     let topBottom = 10;
 
-
     birds = [
         {left: leftRight, top: topBottom, width: birdWidth, height: birdHeight},
         {left: leftRight + birdWidth + 2 * leftRight, top: topBottom, width: birdWidth, height: birdHeight},
@@ -51,23 +50,16 @@
     let place = 0,
         lastTime = (new Date).getTime(), total = 0;
 
-
     function run() {
-
         window.requestAnimationFrame(() => run());
         let now = (new Date).getTime();
-
         total = total + (now - lastTime);
-
         if (total >= 60) {
-
             drawImg(birds[place]);
             place < birds.length - 1 ? place++ : place = 0;
             total = 0;
         }
-
         lastTime = now;
-
     }
 
 

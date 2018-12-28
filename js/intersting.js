@@ -175,3 +175,13 @@ function getTopLimt(orginArr, length) {
     for (let i = 0; resList.length < length; resList.unshift(orginArr[i++])) ;
     return resList;
 }
+
+
+/**
+ * 倒叙输出一个字符串
+ * 调用stringReverse('abcd')
+ * */
+
+function stringReverse(str) {
+    return str.split('').reverse().join('')
+}
