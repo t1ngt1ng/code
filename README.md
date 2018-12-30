@@ -64,3 +64,9 @@ echarts  （这个其实也属于canvas但是单独放了）
 js  
 &emsp;- intersting.js (有意思的代码～) 
 
+designPattern  
+&emsp;- factory.js (工厂模式)
+&emsp;- signle.js (单例模式)
+&emsp;- adapter.js (适配器模式)
+&emsp;- decorator.js (装饰器模式模式)
+ 
