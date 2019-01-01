@@ -68,5 +68,7 @@ designPattern
 &emsp;- factory.js (工厂模式)
 &emsp;- signle.js (单例模式)
 &emsp;- adapter.js (适配器模式)
-&emsp;- decorator.js (装饰器模式模式)
+&emsp;- decorator.js (装饰器模式)
+&emsp;- poxy.js (代理模式)
+&emsp;- observer.js (观察者模式)
  
