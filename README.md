@@ -73,4 +73,7 @@ designPattern
 &emsp;- observer.js (观察者模式)
 &emsp;- iterator.js (迭代器模式)
 &emsp;- state.js (状态模式)
+&emsp;- response.js (职责链模式)
+&emsp;- command.js (命令模式)
+&emsp;- memento.js (备忘录模式)
  
