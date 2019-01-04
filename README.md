@@ -75,5 +75,8 @@ designPattern
 &emsp;- state.js (状态模式)
 &emsp;- response.js (职责链模式)
 &emsp;- command.js (命令模式)
-&emsp;- memento.js (备忘录模式)
+&emsp;- memento.js (备忘录模式)  
+&emsp;-test   
+&emsp;&emsp;- factory1.js(工厂模式练习)
+&emsp;&emsp;- proxy1.js(代理模式练习，折扣显示)
  
