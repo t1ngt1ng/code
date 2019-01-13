@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+    //命令模式：不直接使用canvas创建图形
+    class Action {
+        constructor() {
+            this.canvas = document.getElementById('canvas');
+            this.context = canvas.getContext('2d');
+        }
+
+        fillStyle(color) {
+            this.context.fillStyle = color
+        }
+
+        fillRect(x, y, width, height) {
+            this.context.fillRect(x, y, width, height);
+        }
+    }
+
+
+    class CanvasCommands {
+
+        static execute(msg) {
+            if (!msg) return;
+            let action = new Action();
+            for (let i = 0; i < msg.length; i++) {
+                let item = msg[i];
+                item.param = Object.prototype.toString.call(item.param) === '[object Array]' ? item.param : [item.param];
+                action[item.command].apply(action, item.param);
+            }
+        }
+    }
+
+    CanvasCommands.execute([
+        {command: 'fillStyle', param: 'red'},
+        {command: 'fillRect', param: [10, 10, 120, 100]}
+    ])
+</script>
+</body>
+</html>

@@ -54,29 +54,35 @@ echarts  （这个其实也属于canvas但是单独放了）
 &emsp;- aiqiyilog.html (实现爱奇艺指数-热度趋势) 
 &emsp;- aiqiyiPeopleData.html (实现爱奇艺指数-受0重画像) 
 &emsp;- js  
-&emsp;&emsp;- hot.js（内容热度option）    
-&emsp;&emsp;- dist.js（播放设备option）  
-&emsp;&emsp;- people.js (性别、年龄、星座option) 
-&emsp;&emsp;- province.js (省份地图（echarts2.0），rank option) 
+&emsp;&emsp;- hot.js（内容热度option）      
+&emsp;&emsp;- dist.js（播放设备option）    
+&emsp;&emsp;- people.js (性别、年龄、星座option)   
+&emsp;&emsp;- province.js (省份地图（echarts2.0），rank option)   
 
 
 
-js  
-&emsp;- intersting.js (有意思的代码～) 
+js   
+&emsp;- intersting.js (有意思的代码～)   
+ 
+designPattern    
+&emsp;- factory.js (工厂模式)  
+&emsp;- signle.js (单例模式)  
+&emsp;- adapter.js (适配器模式)  
+&emsp;- decorator.js (装饰器模式)  
+&emsp;- poxy.js (代理模式)  
+&emsp;- observer.js (观察者模式)  
+&emsp;- iterator.js (迭代器模式)  
+&emsp;- state.js (状态模式)  
+&emsp;- response.js (职责链模式)  
+&emsp;- command.js (命令模式)  
+&emsp;- memento.js (备忘录模式)   
+ 
+&emsp;-test     
+&emsp;&emsp;- factory1.js(工厂模式练习)   
+&emsp;&emsp;- proxy1.js(代理模式练习，折扣显示)   
+&emsp;&emsp;- observer1.js(观察者模式练习，老师学生提问回答)   
+&emsp;&emsp;- bridge1.js(桥接模式练习，将动作单元连接在一起工作)   
+&emsp;&emsp;- command1.html(命令模式练习，不直接使用canvas创建图形)   
+&emsp;&emsp;- flyWeight.js(享元模式练习，抽出运动类)   
 
-designPattern  
-&emsp;- factory.js (工厂模式)
-&emsp;- signle.js (单例模式)
-&emsp;- adapter.js (适配器模式)
-&emsp;- decorator.js (装饰器模式)
-&emsp;- poxy.js (代理模式)
-&emsp;- observer.js (观察者模式)
-&emsp;- iterator.js (迭代器模式)
-&emsp;- state.js (状态模式)
-&emsp;- response.js (职责链模式)
-&emsp;- command.js (命令模式)
-&emsp;- memento.js (备忘录模式)  
-&emsp;-test   
-&emsp;&emsp;- factory1.js(工厂模式练习)
-&emsp;&emsp;- proxy1.js(代理模式练习，折扣显示)
  
