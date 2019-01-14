@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>外观模式</title>
+</head>
+<style>
+    .box {
+        border: 1px solid black;
+    }
+</style>
+<body>
+<p id="p1">
+    this is p
+</p>
+
+<script>
+    //外观模式：封装多个功能，简化底层操作
+    class A {
+        constructor(id) {
+            this.id = id;
+        }
+
+        g(id) {
+            return document.getElementById(id || this.id);
+        }
+
+        css(id, key, value) {
+            if (arguments.length === 2) {
+                value = key;
+                key = id;
+                id = this.id;
+            }
+            document.getElementById(id).style[key] = value;
+        }
+
+        attr(id, key, value) {
+            if (arguments.length === 2) {
+                value = key;
+                key = id;
+                id = this.id;
+
+            }
+            document.getElementById(id)[key] = value;
+        }
+    }
+
+    let a = new A('p1');
+    console.log(a.g());
+    a.css('color', 'red');
+    a.attr('className', 'box');
+</script>
+</body>
+</html>

@@ -84,6 +84,8 @@ designPattern
 &emsp;&emsp;- bridge1.js(桥接模式练习，将动作单元连接在一起工作)   
 &emsp;&emsp;- command1.html(命令模式练习，不直接使用canvas创建图形)   
 &emsp;&emsp;- flyWeight.js(享元模式练习，抽出运动类)     
-&emsp;&emsp;- state1.js(状态模式练习，运动状态，可以对状态修改或者调用)   
+&emsp;&emsp;- state1.js(状态模式练习，运动状态，可以对状态修改或者调用)    
+&emsp;&emsp;- facade1.html(外观模式练习，封装多个功能，简化底层操作)    
+
 
  
