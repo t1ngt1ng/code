@@ -86,6 +86,9 @@ designPattern
 &emsp;&emsp;- flyWeight.js(享元模式练习，抽出运动类)     
 &emsp;&emsp;- state1.js(状态模式练习，运动状态，可以对状态修改或者调用)    
 &emsp;&emsp;- facade1.html(外观模式练习，封装多个功能，简化底层操作)    
+&emsp;&emsp;- builder.js(建造者模式练习)
+&emsp;&emsp;- visitor.js(访问者模式练习，让object拥有数组的方法)
+    
 
 
  
