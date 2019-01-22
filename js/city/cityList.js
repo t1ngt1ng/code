@@ -17,7 +17,7 @@ let p, c, d = {}, blocks = [],
 city.forEach(item => {
     p = pyjs.getFullChars(item.name).toLocaleLowerCase().slice(0, 1);//获取全拼,转小写，获取首字母
     c = p.charCodeAt(0);
-    if (c > 96 && c < 123) {//大写a-z,小写A-Z 65-90
+    if (c > 96 && c < 123) {//小写a-z,大写A-Z 65-90
         if (!d[p]) {
             d[p] = []
         }
