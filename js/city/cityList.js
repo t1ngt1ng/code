@@ -34,3 +34,8 @@ for (let [k, v] of Object.entries(d)) {
 blocks.sort((a, b) => a.title.charCodeAt(0) - b.title.charCodeAt(0))
 
 console.log(blocks)
+
+// console.log(pyjs.getFullChars('管理员'));
+// console.log(pyjs.getCamelChars('管理员'));
+
+
