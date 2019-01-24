@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.12&key=	f5870d7098a1bc9b8f78660c30fa6440"></script>
+    <style>
+        #container{
+            width:500px;
+            height:400px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+<script>
+    window.onLoad=function(){
+        let map=new AMap.Map('container',{
+            center: [116.39,39.9]
+        });
+
+        AMap.plugin([
+            'AMap.ToolBar'], () => {
+            let toolbar = new window.AMap.ToolBar()
+            map.addControl(toolbar)
+            // 地图上的标志
+            let marker = new window.AMap.Marker({
+                icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png'
+            })
+            this.marker = marker
+            marker.setMap(map)
+        })
+    }
+    let url='https://webapi.amap.com/maps?v=1.4.12&key=f5870d7098a1bc9b8f78660c30fa6440&callback=onLoad';
+
+    let jsapi=document.createElement('script');
+    jsapi.charset='utf-8';
+    jsapi.src=url;
+
+    document.head.appendChild(jsapi);
+
+</script>
+
+</body>
+</html>

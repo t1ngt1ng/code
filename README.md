@@ -62,7 +62,12 @@ echarts  （这个其实也属于canvas但是单独放了）
 
 
 js   
-&emsp;- intersting.js (有意思的代码～)   
+&emsp;- intersting.js (有意思的代码～)  
+&emsp;- city.js (将城市按照首字母分类js-pinyin.js)
+&emsp;- gdMap.js (高德地图使用简单例子)  
+
+  
+ 
  
 designPattern    
 &emsp;- factory.js (工厂模式)  
