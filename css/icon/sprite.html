@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    ul {
+        list-style: none;
+    }
+
+    .s-icon {
+        width: 52px;
+        height: 40px;
+        display: inline-block;
+        background-image: url('../../canvas/gameTool/birds.png');
+    }
+</style>
+<body>
+
+<ul>
+    <li><i class="s-icon"></i><span>小鸟1</span></li>
+    <li><i class="s-icon"></i><span>小鸟2</span></li>
+    <li><i class="s-icon"></i><span>小鸟3</span></li>
+</ul>
+
+<script>
+    let is = document.getElementsByTagName('i'),
+        lis = document.getElementsByTagName('li');
+console.log(is)
+    let widthStr = window.getComputedStyle(is[0]).width,
+        width = widthStr.substring(0, widthStr.length - 2);
+    let heightStr = window.getComputedStyle(is[0]).height,
+        height = heightStr.substring(0, heightStr.length - 2);
+
+//is.lis获取到的是TMLCollection类型不是array因为也是iterator,可以用for和for in遍历，这里我转成了数组
+    [...lis].forEach((item, idx) => {
+        item.childNodes[0].style.backgroundPosition = '-' + width*idx + 'px 0';
+
+        //此处做，滑过切换下一张小鸟，最后一张切到倒数第二张
+        // 平时图标可以做滑过变色，这里就不再特别引入新的sprite图了
+
+        item.addEventListener('mouseover',function(){
+            item.childNodes[0].style.backgroundPosition='-' + width*(idx>1?idx-1:idx+1) + 'px 0';
+        })
+        item.addEventListener('mouseout',function(){
+            item.childNodes[0].style.backgroundPosition = '-' + width*idx + 'px 0';
+        })
+    })
+</script>
+
+</body>
+</html>

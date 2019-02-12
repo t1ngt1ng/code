@@ -48,7 +48,11 @@ canvas
  
  
 css  
-&emsp;- fontEffect.html (毛玻璃和金属文字效果)  
+&emsp;- fontEffect.html (毛玻璃和金属文字效果)   
+&emsp;- icon   
+&emsp;&emsp;-sprite.html(sprite图使用)   
+&emsp;&emsp;-DyIcon.html(css操作font icon)   
+
 
 echarts  （这个其实也属于canvas但是单独放了）    
 &emsp;- aiqiyilog.html (实现爱奇艺指数-热度趋势) 
