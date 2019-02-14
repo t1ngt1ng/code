@@ -50,8 +50,11 @@ canvas
 css  
 &emsp;- fontEffect.html (毛玻璃和金属文字效果)   
 &emsp;- icon   
-&emsp;&emsp;-sprite.html(sprite图使用)   
-&emsp;&emsp;-DyIcon.html(css操作font icon)   
+&emsp;&emsp;- sprite.html(sprite图使用)   
+&emsp;&emsp;- DyIcon.html(css操作font icon)   
+&emsp;- transform (css3 transform 划过图片飞入文字效果)  
+&emsp;&emsp;- index.html  
+&emsp;&emsp;- main.css  
 
 
 echarts  （这个其实也属于canvas但是单独放了）    

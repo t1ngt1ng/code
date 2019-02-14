@@ -1,0 +1,302 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+figure{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 33.33%;
+    height: 337px;
+    overflow: hidden;
+    float: left;
+}
+figure img{
+    opacity: 0.8;
+    transition: all 0.35s;
+    width: 600px;
+    height:337px;
+}
+
+figure figcaption  p,h2,span,div{
+    transition: all 0.35s;
+
+}
+figcaption{
+    position: absolute;
+    top:0px;
+    left:0px;
+    color: #fff;
+    font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif
+    /*font-family: "Microsoft YaHei"*/
+}
+
+@media screen and (max-width: 600px){
+    figure{
+        width: 100%;
+    }
+}
+@media screen and  (max-width: 1000px )and (min-width:601px){
+    figure{
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1001px){
+    figure{
+        width: 33.33%;
+    }
+}
+
+.effect1 {
+    background: #00002f;
+}
+.effect1 figcaption{
+    width: 100%;
+    height: 100%;
+}
+.effect1 #div1{
+    width: 80%;
+    height: 60%;
+    border-top:2px solid #fff;
+    border-bottom:2px solid #fff;
+    position: absolute;
+    top:20%;
+    left:10%;
+    transform: scaleX(0);
+}
+
+.effect1 #div2{
+    width: 60%;
+    height: 80%;
+    border-left:2px solid #fff;
+    border-right:2px solid #fff;
+    position: absolute;
+    top:10%;
+    left:20%;
+    transform: scaleY(0);
+}
+
+.effect1 figcaption h2{
+    margin-top: 25%;
+    margin-left: 25%;
+    transform: translate(0,-20px);
+    opacity: 0;
+}
+
+.effect1:hover figcaption h2{
+    transform: translate(0,0);
+    opacity: 1
+}
+.effect1:hover img{
+    opacity: 0.5;
+}
+
+.effect1 figcaption p{
+    margin-top: 5px;
+    margin-left: 25%;
+    transform: translate(0,30px);
+    opacity: 0
+}
+.effect1:hover figcaption p{
+    transform: translate(0,0);
+    opacity: 1
+}
+
+.effect1:hover #div1{
+    transform: scaleX(1);
+}
+.effect1:hover #div2{
+    transform: scaleY(1);
+}
+
+
+.effect2{
+    background-color: #002f00;
+}
+
+.effect2:hover img{
+    opacity: 0.5
+}
+
+.effect2 figcaption h2{
+    margin-top:15%;
+    margin-left: 15%;
+    transform: translate(0,-100px);
+}
+.effect2:hover figcaption h2{
+    transform: translate(0,0);
+}
+
+.effect2 figcaption{
+    width: 100%;
+    height: 100%;
+}
+.effect2 figcaption div{
+    width: 120%;
+    height:200px;
+    background: #fff;
+    position: absolute;
+    top:337px;
+    opacity: 0.4;
+}
+.effect2:hover figcaption div{
+    transform: rotate(-20deg);
+    transform-origin:left top;
+}
+.effect2 figcaption span{
+    color:#444444;
+    position: absolute;
+    bottom: 15%;
+    right:10%;
+    transform: translate(0,130px);
+}
+.effect2:hover figcaption span{
+    transform: translate(0,0);
+
+}
+
+.effect3{
+    background-color: #2f0000;
+}
+.effect3 figcaption p{
+    background: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    color: #333;
+    margin:15px;
+    text-align: center;
+    transition: all 0.1s;
+    transform: translate(-190px,0px);
+}
+
+.effect3:hover figcaption p{
+    transform: translate(0,0);
+}
+.effect3 figcaption{
+    padding: 20px;
+}
+
+.effect3 figcaption p:nth-of-type(1){
+    transition-delay: 0.05s;
+}
+.effect3 figcaption p:nth-of-type(2){
+    transition-delay: 0.1s;
+}
+.effect3 figcaption p:nth-of-type(3){
+    transition-delay: 0.15s;
+}
+.effect3:hover img{
+    transform: translate(-50px,0);
+    opacity: 0.5;
+}
+
+
+.effect4{
+    background-color: #030;
+}
+.effect4 figcaption{
+    width:100%;
+    height: 100%;
+}
+.effect4 figcaption h2{
+    margin-top: 15%;
+    margin-left: 15%;
+    margin-bottom: 15px;
+}
+.effect4 figcaption p{
+    margin-left: 15%;
+    transform: translate(0,50px);
+    opacity: 0;
+}
+.effect4 figcaption div{
+    border:2px solid #fff;
+    width: 80%;
+    height:80%;
+    position: absolute;
+    top:10%;
+    left:10%;
+    transform: translate(0px,-350px) rotate(0deg);
+}
+
+.effect4:hover figcaption div{
+    transform: translate(0,0) rotate(360deg);
+}
+
+.effect4:hover img{
+    opacity: 0.5;
+}
+
+.effect4:hover figcaption p{
+    transform: translate(0,0) ;
+    opacity: 1
+}
+
+.effect5{
+    background-color: #000;
+}
+.effect5 figcaption {
+    top:30%;
+    left:15%;
+}
+.effect5:hover img{
+    opacity: 0.5
+}
+
+.effect5 figcaption p{
+    transform: skew(90deg)
+}
+
+.effect5:hover figcaption p{
+    transform: skew(0);
+    transition-delay:0.1s;
+}
+
+
+.effect6 figcaption div{
+    border:2px solid #fff;
+    width: 80%;
+    height:80%;
+    position: absolute;
+    top:10%;
+    left:10%;
+    transform: translate(0px,0px) ;
+}
+.effect6 figcaption h2{
+    margin-top:15%;
+    margin-left: 15%;
+    transform: scale(1.2,1.2);
+    opacity: 0;
+}
+.effect6 figcaption p{
+    margin-top:5px;
+    margin-left: 15%;
+    transform: scale(1.2,1.2);
+    opacity: 0;
+}
+.effect6 figcaption{
+    width: 100%;
+    height:100%;
+}
+.effect6 figcaption div{
+    transform: scale(1.2,1.2);
+    opacity: 0
+}
+.effect6:hover figcaption div{
+    transform: scale(1,1);
+    opacity: 1
+}
+.effect6:hover img{
+    opacity: 0.5;
+    transform: scale(1.2,1.2);
+}
+
+.effect6:hover figcaption h2{
+    transform: scale(1,1);
+    opacity: 1;
+}
+.effect6:hover figcaption p{
+    transform: scale(1,1);
+    opacity: 1;
+}
+
