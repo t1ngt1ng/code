@@ -7,15 +7,13 @@ figure{
     padding: 0;
     position: relative;
     width: 33.33%;
-    height: 337px;
+    height: 345px;
     overflow: hidden;
     float: left;
 }
 figure img{
     opacity: 0.8;
     transition: all 0.35s;
-    width: 600px;
-    height:337px;
 }
 
 figure figcaption  p,h2,span,div{
@@ -24,8 +22,8 @@ figure figcaption  p,h2,span,div{
 }
 figcaption{
     position: absolute;
-    top:0px;
-    left:0px;
+    top:0;
+    left:0;
     color: #fff;
     font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif
     /*font-family: "Microsoft YaHei"*/
@@ -249,7 +247,7 @@ figcaption{
 
 .effect5:hover figcaption p{
     transform: skew(0);
-    transition-delay:0.1s;
+    /*transition-delay:0.1s;*/
 }
 
 

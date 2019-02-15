@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>展示一个滑过展开按钮呈现圆形</title>
+    <style>
+        a {
+            padding: 10px;
+
+            text-decoration: none;
+        }
+
+        .wrap {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 120px auto 20px;
+            border: 1px dotted #aaaaaa;
+            border-radius: 100%;
+        }
+
+        .wrap .btn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            background: #b13947;
+            font-size: 12px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 100%;
+        }
+
+        .wrap nav {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, .3);
+            transform: scale(0);
+            transition: all 0.5s ease-out;
+            opacity: 0;
+        }
+
+        .wrap:hover nav {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .wrap nav > a {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 30px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 100%;
+            text-shadow: 1px 1px 0 #000;
+            transform: translate(-50%, -50%);
+            vertical-align:middle;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="wrap">
+    <nav><a href="/">red</a>
+        <a href="/">yellow</a>
+        <a href="/">blue</a>
+        <a href="/">green</a>
+        <a href="/">cyan</a>
+        <a href="/">blue</a>
+        <a href="/">purple</a>
+
+    </nav>
+    <a href="/" class="btn">show</a>
+</div>
+
+
+<script>
+    var colors = ['#FF0000', '#FF7F00', '#FFFF00 ', '#00FF00 ',
+        '#00FFFF', '#0000FF', '#8B00FF']
+    window.onload = function () {
+        let as = document.getElementsByTagName("a");
+        let points = computedPosition(100, as.length - 1);
+        for (let i = 0; i < as.length - 1; i++) {
+//            let r=10*(i+1);
+//            as[i].style.width=r+'px';
+//            as[i].style.height=r+'px';
+            as[i].style.background = colors[i];
+            as[i].style.left = points[i].x + 'px';
+            as[i].style.top = points[i].y + 'px';
+        }
+    }
+
+    function computedPosition(r, length) {
+        let points = [];
+        let pices = (360 / length) * (Math.PI / 180);
+        for (let i = 0; i < length; i++) {
+            let arc = pices * i;
+            let x = r + Math.floor(r * Math.cos(arc));
+            let y = r + Math.floor(r * Math.sin(arc));
+            points.push({x, y});
+        }
+        return points;
+    }
+
+</script>
+</body>
+</html>
